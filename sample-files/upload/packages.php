@@ -24,5 +24,5 @@ foreach ($files as $file) {
 }
 
 header("Content-Type: text/plain");
-echo json_encode($document, JSON_PRETTY_PRINT);
+echo json_encode($document);
 ?>
