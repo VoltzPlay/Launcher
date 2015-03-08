@@ -1,0 +1,12 @@
+{
+    "minimumVersion": 1,
+    "packages": [
+		{
+            "name": "voltzplay",
+            "title": "VoltzPlay!",
+            "version": "201503061732",
+            "location": "voltzplay.json",
+            "priority": 1
+        }
+    ]
+}

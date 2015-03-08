@@ -1,0 +1,15 @@
+{
+  "name": "voltzplay",
+  "title": "VoltzPlay!",
+  "gameVersion": "1.7.10",
+  "launch": {
+    "flags": [
+      "-Dfml.ignoreInvalidMinecraftCertificates=true"
+    ]
+  },
+  "userFiles": {
+    "include": [
+      "options.txt"
+    ]
+  }
+}
