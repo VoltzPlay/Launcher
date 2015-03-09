@@ -9,7 +9,8 @@
   },
   "userFiles": {
     "include": [
-      "options.txt"
+      "options.txt",
+	  "optionsof.txt"
     ]
   }
 }
