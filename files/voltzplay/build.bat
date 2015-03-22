@@ -1,1 +1,1 @@
-java -jar launcher-builder-1.0.2-all.jar --version "201503211550" --input . --output upload --manifest-dest "upload/voltzplay.json" 
+java -jar launcher-builder-1.0.2-all.jar --version "201503221710" --input . --output upload --manifest-dest "upload/voltzplay.json" 
