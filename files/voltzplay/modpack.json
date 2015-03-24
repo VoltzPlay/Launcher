@@ -9,8 +9,36 @@
   },
   "userFiles": {
     "include": [
-      "options.txt",
-	  "optionsof.txt"
+      "options.txt"
     ]
   }
+  "features": [
+    {
+	  "properties": {
+         "name": "NotEnoughItems",
+		 "description": "NotEnoughItems gives you recipe lookup abilities in-game.",
+		 "recommendation": "starred",
+		 "selected": true
+      },
+      "files": {
+        "include": [
+          "mods/CodeChickenCore*",
+		  "mods/NotEnoughItems*"
+        ]
+      },
+	},
+	{
+      "properties": {
+        "name": "Opis",
+        "description": "Opis is a server profiler, this is only useful if you're authorized to use it on the server.",
+        "selected": false
+      },
+      "files": {
+        "include": [
+          "mods/MobiusCore*",
+		  "mods/Opis*"
+        ]
+      }
+    }
+  ]
 }

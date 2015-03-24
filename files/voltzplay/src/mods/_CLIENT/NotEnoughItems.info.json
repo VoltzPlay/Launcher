@@ -1,8 +1,0 @@
-{
-  "feature": {
-    "name": "NotEnoughItems",
-    "description": "NotEnoughItems gives you recipe lookup abilities in-game.",
-    "recommendation": "starred",
-    "selected": true
-  }
-}
