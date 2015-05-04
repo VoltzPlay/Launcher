@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>VoltzPlay!</title>
+		<meta charset="UTF-8">
 		<style>
 		body {
 			color: #999999;
@@ -41,7 +43,100 @@
 		<div class="block">
 			<h1>Velkommen!</h1>
 			<p>VoltzPlay! er en server for deg som liker det mer tekniske Minecraft universet, her kan du oppleve alt fra romkappløpet, datamaskiner, elektrisitet og mye mer.</p>
-			<p>Kart over serveren kan du finne <a href="http://mc.halvors.org:8123/">her</a>.</p>
+			<p>Kart over serveren kan du finne <a href="http://voltzplay.org/map">her</a>.</p>
+		</div>
+		<div class="block">
+			<h1>Railcraft 9.6.0.0</h1>
+			<p>Here is what you’ve all been waiting for! Railcraft 9.6 is here!</p>
+			<p>For those of you who have updated Forge recently, this update should resolve all your issues involving Fluids. It also includes support for IFluidContainerItems!</p>
+			<p>This update will also see the much improved new Switch code fron ssotangkur. They should be more reliable than ever!</p>
+			<p>And of course there a whole host of other improvements and bugfixes. Not a huge amount of new features, but I got caught up in a slew of bugfixes. The bigger the mod gets, the more time I have to spend doing bugfixes instead of new features, sad day!</p>
+			
+			<p><strong>Changelog:</strong></p>
+			<ul>
+				<li>INFO: Full support for the latest Forge Fluid changes, also fully backwards compatible with older versions. May require some config tweaks for older versions.</li>
+				<li>NEW: Removed Forestry API files from the JAR to increase compatibility and reduce conflicts. All Forestry integration remains functional. (experimental)</li>
+				<li>NEW: You can now reset the Signal Tuner and Signal Block Surveyor by sneak-clicking.</li>
+				<li>NEW: Add Passive Anchor, does not force load chunks on game load, only when visited. Recipe uses Cyan Dye for now, but will eventually use Prismarine.</li>
+				<li>NEW: IFluidContainerItems should be completely supported now.</li>
+				<li>NEW: Add Debug in-game command that will dump data to the logs.</li>
+				<li>NEW: Capacitor Boxes now have a switch to determine if they should trigger on a rising or falling signal. (contribution by wshadow)</li>
+				<li>NEW: Improvements to the Switch code that should make them more reliable and predicable. (contribution by ssotangkur)</li>
+				<li>CHANGE: Loaders "Has Work" Buildcraft trigger should better reflect the actual loader status. Issue #535</li>
+				<li>CHANGE: Signal Block Relay Boxes now require two Signal Circuits in the recipe instead of just one.</li>
+				<li>CHANGE: Signal Block Relay Boxes no longer function as a Controller. If you need that functionality, put a Controller Box next to it. May break some setups.</li>
+				<li>CHANGE: Improve Signal Block debug print statements to help with debugging some possible issues.</li>
+				<li>CHANGE: Coke Block now 10x Coal Coke fuel value and is flammable. (contributions by daniel and Kamran)</li>
+				<li>FIX: Various chat messages that didn't before should now properly localize.</li>
+				<li>FIX: Personal Anchors should only tick their update (and fuel use) function once per tick...oops.</li>
+				<li>FIX: Fix Geode Generator. Issue #576</li>
+				<li>FIX: Geodes should only spawn under the ocean floor now, instead of half submerged. Issue #526 (contribution by liach)</li>
+				<li>FIX: Melt snow on top of Smokers. Issue #530</li>
+				<li>FIX: The Controller Box shouldn't respond to redstone signals that don't update it. Issue #539</li>
+				<li>FIX: Tanks should now properly sync with the client again. Issue #545</li>
+				<li>FIX: Don't register research if Thaumcraft crowbars aren't defined. Issue #546</li>
+				<li>FIX: Invalid Multi-blocks should reject items. Issue #557</li>
+				<li>FIX: Fixed NPE when breaking a cart on a Routing Detector. Issue #562</li>
+				<li>FIX: Engines should output to IEnergyReceivers in addition to IEnergyHandlers. Issue #564</li>
+				<li>FIX: Signal Blocks should no longer ignore hills and valleys within the block.</li>
+				<li>FIX: Fix Track Layer not dropping items and expand valid replaceable blocks (contribution by Yopu)</li>
+				<li>FIX: Fix stack-over-flow on circular Train.</li>
+				<li>FIX: SMP block sounds should work now (contribution by PaperTriangle)</li>
+				<li>FIX: Newly spawned Anchor Carts should attempt to force load chunks immediately instead of waiting for an entityEnteredChunk event.</li>
+				<li>FIX: Fixed localization issues with Track GUIs.</li>
+				<li>FIX: Disabling the Factory Module should no longer prevent you from cooking Abyssal and Quarried Stone.</li>
+				<li>FIX: Attempt to make Train objects survive linking and cart deaths (unlinking still needs work).</li>
+				<li>FIX: Anchor Cart should no longer request Chunkloader Tickets if the entity is dead.</li>
+				<li>FIX: Crowbar should no longer attempt to link dead carts.</li>
+				<li>FIX: Train Detector should no longer count dead carts as part of a Train. Issue #536</li>
+				<li>FIX: Crowbar Destruction Enchantment can no longer perform alchemy. Issue #519 (contribution by WoodStone)</li>
+				<li>FIX: Hide the Tank Valves Animation Tank from TankInfo calls. Issue #381</li>
+				<li>FIX: Properly Handle Invalid Regex Syntax in Routing Tables. Issue #518</li>
+				<li>FIX: Don't try to define Brick recipes if disabled. Issue #513</li>
+				<li>FIX: Reduce logging levels so that more log messages get sent to the log file instead of the console.</li>
+			</ul>
+		</div>
+		<div class="block">
+			<h1>Mekanism 8</h1>
+			<p>Vi har nå oppdatert til Mekanism 8, denne utgivelsen bringer mange feilrettinger og nye funksjoner.</p>
+
+			<p><strong>Content:</strong></p>
+			<ul>
+				<li>Flamethrowers - deadly, hydrogen-powered, fire-shooting, ore-smelting, forest-burning pieces of steel.</li>
+				<li>Fusion Reactors - ultimate end-game energy production.</li>
+				<li>Lasers - high-powered laser beam emitters, capable of breaking blocks and cooking chickens.</li>
+				<li>Laser Amplifiers - control your lasers&#8217; energy transmission and beam direction.</li>
+				<li>Laser Tractor Beams - store the items your lasers mine.</li>
+				<li>Factory Installers - upgrade machines to factories and factories to higher-tiered factories without breaking a block.</li>
+				<li>Gauge Droppers - quickly swap fluids and gases from machines&#8217; GUI gauges.</li>
+				<li>Lithium - a brand new resource, created by evaporating Brine.</li>
+				<li>Hohlraums - the key to igniting Fusion Reactors.</li>
+				<li>Filter Upgrades - upgrade your Electric Pumps to filter out heavy water for Deuterium production.</li>
+				<li>Solar Neutron Activators - advanced, neutron-absorbing machinery for Tritium production.</li>
+				<li>Energized Induction Matrix - massive, modular, end-game, multiblock energy storage.</li>
+				<li>Oredictionificator - standardize a single kind of dust, ore or ingot for your resource collection.</li>
+				<li>Baby Skeletons - you heard me.</li>
+			</ul>
+			<p><strong>Enhancements:</strong></p>
+			<ul>
+				<li>Brand-new upgrade system - upgrading never felt so good.</li>
+				<li>Redesigned side configuration menu - configure not only which sides items can enter, but also energy, gases and fluids.</li>
+				<li>Redesigned Seismic Reader GUI - now much cleaner and user-friendly thanks to Archtikz.</li>
+				<li>Enhanced Logistical Transporter algorithms - now much more server-friendly and work better with Bins.</li>
+				<li>Refactored machine recipe system - now completely optimized and more easily expandable for future additions.</li>
+				<li>IMC recipe API - allowing for much easier integration by other mod developers.</li>
+				<li>Digital Miner improvements - filter-based replace blocks, more filter-unique options, dynamic visual of the miner&#8217;s range, more user-friendly interface.</li>
+				<li>Teleporter redesign - now with a beautiful and advanced new interface and frequency-based teleportation, with private and public frequency networks.</li>
+				<li>Refactor of Salination Plant - now called Solar Evaporation Controller, much more CPU efficient, and capable of processing different resources.</li>
+				<li>Better NEI modules - neater, easier to interact with, and better showcasing of Mekanism recipes.</li>
+				<li>Better upgrade support - all processing machinery now can support upgrades, allowing for faster 5x ore processing.</li>
+				<li>Revamped multiblock system - all multiblocks now follow a unified framework, allowing for easier future additions and better code efficiency.</li>
+				<li>New multiblock features, including universal connected textures and multiblock creation animations.</li>
+				<li>Config-based machine disabling - server-based machine configuration to allow for disabling of certain machinery.</li>
+				<li>Improved sounds - machine and player-based sounds have been redesigned and improved to allow for seamless looping and better quality listening.</li>
+				<li>Refactored sound system - Mekanism&#8217;s sound system has been completely recoded to follow along Forge standards, meaning &#8220;sound mufflers&#8221; will now work on anything Mekanism.</li>
+				<li>Many more minor enhancements and additions I&#8217;m sure you will discover.</li>
+			</ul>
 		</div>
 	</body>
 </html>
