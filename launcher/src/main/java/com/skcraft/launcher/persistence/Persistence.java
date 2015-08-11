@@ -6,6 +6,9 @@
 
 package com.skcraft.launcher.persistence;
 
+import com.fasterxml.jackson.core.PrettyPrinter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter.Lf2SpacesIndenter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.ByteSink;
 import com.google.common.io.ByteSource;
@@ -14,7 +17,10 @@ import com.google.common.io.Files;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.WeakHashMap;
 import java.util.logging.Level;
 
@@ -32,8 +38,13 @@ import java.util.logging.Level;
 public final class Persistence {
 
     private static final ObjectMapper mapper = new ObjectMapper();
-    private static final WeakHashMap<Object, ByteSink> bound =
-            new WeakHashMap<Object, ByteSink>();
+    private static final WeakHashMap<Object, ByteSink> bound = new WeakHashMap<Object, ByteSink>();
+    public static final DefaultPrettyPrinter L2F_LIST_PRETTY_PRINTER;
+
+    static {
+        L2F_LIST_PRETTY_PRINTER = new DefaultPrettyPrinter();
+        L2F_LIST_PRETTY_PRINTER.indentArraysWith(Lf2SpacesIndenter.instance);
+    }
 
     private Persistence() {
     }
@@ -203,8 +214,39 @@ public final class Persistence {
      * @throws java.io.IOException on I/O error
      */
     public static void write(File file, Object object) throws IOException {
+        write(file, object, null);
+    }
+
+    /**
+     * Write an object to file.
+     *
+     * @param file the file
+     * @param object the object
+     * @param prettyPrinter a pretty printer to use, or null
+     * @throws java.io.IOException on I/O error
+     */
+    public static void write(File file, Object object, PrettyPrinter prettyPrinter) throws IOException {
         file.getParentFile().mkdirs();
-        mapper.writeValue(file, object);
+        if (prettyPrinter != null) {
+            mapper.writer(prettyPrinter).writeValue(file, object);
+        } else {
+            mapper.writeValue(file, object);
+        }
+    }
+
+    /**
+     * Write an object to a string.
+     *
+     * @param object the object
+     * @param prettyPrinter a pretty printer to use, or null
+     * @throws java.io.IOException on I/O error
+     */
+    public static String writeValueAsString(Object object, PrettyPrinter prettyPrinter) throws IOException {
+        if (prettyPrinter != null) {
+            return mapper.writer(prettyPrinter).writeValueAsString(object);
+        } else {
+            return mapper.writeValueAsString(object);
+        }
     }
 
 }

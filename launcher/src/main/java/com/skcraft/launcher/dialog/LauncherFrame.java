@@ -11,6 +11,8 @@ import com.skcraft.launcher.Instance;
 import com.skcraft.launcher.InstanceList;
 import com.skcraft.launcher.Launcher;
 import com.skcraft.launcher.launch.LaunchListener;
+import com.skcraft.launcher.launch.LaunchOptions;
+import com.skcraft.launcher.launch.LaunchOptions.UpdatePolicy;
 import com.skcraft.launcher.swing.*;
 import com.skcraft.launcher.util.SharedLocale;
 import com.skcraft.launcher.util.SwingExecutor;
@@ -66,9 +68,9 @@ public class LauncherFrame extends JFrame {
         instancesModel = new InstanceTableModel(launcher.getInstances());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(700, 450);
         setMinimumSize(new Dimension(400, 300));
         initComponents();
+        pack();
         setLocationRelativeTo(null);
 
         SwingHelper.setIconImage(this, Launcher.class, "icon.png");
@@ -105,7 +107,7 @@ public class LauncherFrame extends JFrame {
         splitPane.setDividerLocation(200);
         splitPane.setDividerSize(4);
         splitPane.setOpaque(false);
-        container.add(splitPane, "grow, wrap, span 5, gapbottom unrel");
+        container.add(splitPane, "grow, wrap, span 5, gapbottom unrel, w null:680, h null:350");
         SwingHelper.flattenJSplitPane(splitPane);
         container.add(refreshButton);
         container.add(updateCheck);
@@ -195,7 +197,7 @@ public class LauncherFrame extends JFrame {
         JMenuItem menuItem;
 
         if (selected != null) {
-            menuItem = new JMenuItem(!selected.isLocal() ? "Install" : "Launch");
+            menuItem = new JMenuItem(!selected.isLocal() ? tr("instance.install") : tr("instance.launch"));
             menuItem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -349,7 +351,13 @@ public class LauncherFrame extends JFrame {
         boolean permitUpdate = updateCheck.isSelected();
         Instance instance = launcher.getInstances().get(instancesTable.getSelectedRow());
 
-        launcher.getLaunchSupervisor().launch(this, instance, permitUpdate, new LaunchListenerImpl(this));
+        LaunchOptions options = new LaunchOptions.Builder()
+                .setInstance(instance)
+                .setListener(new LaunchListenerImpl(this))
+                .setUpdatePolicy(permitUpdate ? UpdatePolicy.UPDATE_IF_SESSION_ONLINE : UpdatePolicy.NO_UPDATE)
+                .setWindow(this)
+                .build();
+        launcher.getLaunchSupervisor().launch(options);
     }
 
     private static class LaunchListenerImpl implements LaunchListener {

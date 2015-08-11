@@ -6,6 +6,8 @@
 
 package com.skcraft.launcher.swing;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -26,12 +28,14 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
@@ -51,6 +55,8 @@ public final class SwingHelper {
 
         }
     };
+
+    private static final Joiner NEW_LINE_JOINER = Joiner.on("\n");
 
     private SwingHelper() {
     }
@@ -298,10 +304,37 @@ public final class SwingHelper {
         return null;
     }
 
+    public static Image readIconImageScaled(Class<?> clazz, String path, int w, int h) {
+        BufferedImage image = readIconImage(clazz, path);
+        if (image != null) {
+            return image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+        } else {
+            return null;
+        }
+    }
+
     public static void setIconImage(JFrame frame, Class<?> clazz, String path) {
         BufferedImage image = readIconImage(clazz, path);
         if (image != null) {
             frame.setIconImage(image);
+        }
+    }
+
+    public static ImageIcon readImageIcon(Class<?> clazz, String path) {
+        BufferedImage image = readIconImage(clazz, path);
+        if (image != null) {
+            return new ImageIcon(image);
+        } else {
+            return null;
+        }
+    }
+
+    public static ImageIcon readImageIconScaled(Class<?> clazz, String path, int w, int h) {
+        Image image = readIconImageScaled(clazz, path, w, h);
+        if (image != null) {
+            return new ImageIcon(image);
+        } else {
+            return null;
         }
     }
 
@@ -377,6 +410,39 @@ public final class SwingHelper {
         return container;
     }
 
+    public static void setTextAndResetCaret(JTextComponent component, String text) {
+        component.setText(text);
+        component.setCaretPosition(0);
+    }
+
+    public static JScrollPane wrapScrollPane(Component component) {
+        JScrollPane scrollPane = new JScrollPane(component);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        return scrollPane;
+    }
+
+    public static String listToLines(List<String> lines) {
+        return SwingHelper.NEW_LINE_JOINER.join(lines);
+    }
+
+    public static List<String> linesToList(String text) {
+        String[] tokens = text.replace("\r", "\n").split("\n");
+        List<String> values = Lists.newArrayList();
+        for (String token : tokens) {
+            String value = token.trim();
+            if (!value.isEmpty()) {
+                values.add(value);
+            }
+        }
+        return values;
+    }
+
+    public static void addActionListeners(AbstractButton button, ActionListener[] listeners) {
+        for (ActionListener listener : listeners) {
+            button.addActionListener(listener);
+        }
+    }
+
     public static boolean setLookAndFeel(String lookAndFeel) {
         try {
             UIManager.setLookAndFeel(lookAndFeel);
@@ -387,4 +453,9 @@ public final class SwingHelper {
         }
     }
 
+    public static void setSwingProperties(String appName) {
+        UIManager.getDefaults().put("SplitPane.border", BorderFactory.createEmptyBorder());
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", appName);
+        System.setProperty("apple.laf.useScreenMenuBar", "true");
+    }
 }
