@@ -98,7 +98,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-
 ### Java ###
 *.class
 
@@ -148,6 +147,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# Ignoring modpack upload files.
-upload/
